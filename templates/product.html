@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+
+<body>
+
+{% block content %}
+
+    <div class="container-fluid-xxl py-5">
+        <div class="container">
+            <div class="row g-5 my-4">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute w-100 h-100" src="{{ob.img.url}}" alt="" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <h4 class="mb-4">{{ob.name}}</h4>
+                    <p class="mb-4">{{ob.desc}}</p>
+                    <h5>PRICE : {{ob.price}} rs.</h5>
+                    <h5>STOCK : {{ob.stock}}</h5>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="{% url 'add' ob.id %}">Add To Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'pro/lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'pro/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'pro/lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'pro/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'pro/lib/tempusdominus/js/moment.min.js' %}"></script>
+    <script src="{% static 'pro/lib/tempusdominus/js/moment-timezone.min.js' %}"></script>
+    <script src="{% static 'pro/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'pro/js/main.js' %}"></script>
+{% endblock %}
+</body>
+</html>

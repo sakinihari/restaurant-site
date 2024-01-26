@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Registration Form</title>
+	<link rel="stylesheet" href="{% static 'register/style.css' %}">
+
+	  <!-- CSS FILES -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+
+        <link href="{% static 'base/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'base/css/bootstrap-icons.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static 'base/css/slick.css' %}"/>
+
+        <link href="{% static 'base/css/tooplate-little-fashion.css' %}" rel="stylesheet">
+
+          <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+
+	<style>
+		.main{
+		margin-top: 400px;
+		}
+    </style>
+</head>
+
+<body>
+ <main>
+      <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="/">
+                        <strong><i class="fa fa-map-marker-alt me-3"></i><span>Food</span> Corner</strong>
+                    </a>
+
+
+                       <div class="d-none d-lg-block">
+                             <ul class="navbar-nav mx-auto">
+                                 <li class="nav-item">
+                                     <a class="nav-link active" href="/">Home</a>
+                                 </li>
+
+                                 <li class="nav-item">
+                                     <a class="nav-link" href="{% url 'cartDetails' %}"><i class="fa fa-shopping-cart" style="font-size:16px"></i>&nbsp;{{itc}}</a>
+                                 </li>
+
+                                 {% if user.is_authenticated %}
+                                 <li class="nav-item">
+                                      <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                                 </li>
+
+                                 <li class="nav-item">
+                                      <a href=""><i class='fas fa-user' style='font-size:18px'></i>&nbsp;{{user.username}}</a>
+                                 </li>
+                             </ul>
+                                 {% else %}
+                                  <div class="d-none d-lg-block">
+                                      <ul class="navbar-nav mx-auto">
+                                          <li class="nav-item">
+											  <a class="nav-link" href="{% url 'login' %}"><i class='fas fa-user' style='font-size:18px'></i>&nbsp;Login</a>
+										  </li>
+                                      </ul>
+                                  </div>
+                                  {% endif %}
+                       </div>
+                </div>
+            </nav>
+        </main>
+
+	<div  class="main">
+
+        <div>
+         <p>
+           {% if messages %}
+              {% for message in messages %}
+                 <div class="alert alert-danger" role="alert">
+                      {{message}}
+                 </div>
+              {% endfor %}
+           {% endif %}
+         </p>
+      </div>
+
+        <h5>REGISTER</h5>
+		<form action="registration" method="post">
+			 {% csrf_token %}
+			<label for="first">First Name:</label>
+			<input type="text" id="first"
+				name="firstname"
+				placeholder="Enter your first name" required>
+
+			<label for="last">Last Name:</label>
+			<input type="text" id="last"
+				name="lastname"
+				placeholder="Enter your last name" required>
+
+			<label for="user">User Name:</label>
+			<input type="text" id="user"
+				name="username"
+				placeholder="Enter your user name" required>
+
+			<label for="email">Email:</label>
+			<input type="email" id="email"
+				name="email"
+				placeholder="Enter your email" required>
+
+
+			<label for="password">Password:</label>
+			<input type="password" id="password"
+				name="password"
+				placeholder="Enter your password" required>
+
+			<label for="repassword">Re-type Password:</label>
+			<input type="password" id="repassword"
+				name="password2"
+				placeholder="Re-Enter your password" required>
+			<span id="pass"></span>
+
+            <br>
+			<div class="wrap">
+				<button type="submit" onclick="solve()">
+				SUBMIT
+				</button>
+			</div>
+		</form>
+	</div>
+	<script src="script.js"></script>
+
+</body>
+
+</html>

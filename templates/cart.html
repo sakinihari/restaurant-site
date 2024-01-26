@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" >
+    <title>FoodCorner/Cart</title>
+
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="{% static 'cart/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+<div class="container py-5">
+<div class="card" >
+            <div class="row">
+                <div class="col-md-8 cart">
+                    <div class="title" >
+                        <div class="row" >
+                            <div class="col" ><h4><b>Cart</b></h4></div>
+                            <div class="col align-self-center text-right text-muted">{{itc}} items</div>
+                        </div>
+                    </div>
+                {% if ci %}
+                    {% for i in ci %}
+                    <div class="row border-top border-bottom">
+                        <div class="row main align-items-center">
+                            <div class="col-2"><a href="{{i.prodt.get_url}}"> <img class="img-fluid" style="width:150px" src="{{i.prodt.img.url}}"></a></div>
+                            <div class="col">
+                                <div class="row">{{i.prodt.name}}</div>
+                                <div>Rs. {{i.prodt.price}}</div>
+                            </div>
+                            <div class="col">
+                                <a href="{% url 'decrement' i.prodt.id %}" class="border">-</a><a href="#">{{i.quan}}</a><a href="{% url 'add' i.prodt.id %}" class="border">+</a>
+                            </div>
+                            <div class="col">&euro; {{i.total}}<span class="close"><a href="{% url 'remove' i.prodt.id %}"><i class="fa fa-trash-o" style="font-size:18px"></i></a> </span></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div><h3 style="color:red ; text-align:center">Cart is Empty!!</h3></div>
+                {% endif %}
+
+                    <div class="back-to-shop"><a href="/">&leftarrow;</a><span class="text-muted"><a href="/">Back to shop</a></span></div>
+                </div>
+                <div class="col-md-4 summary">
+                    <div><h5><b>Summary</b></h5></div>
+                    <hr>
+                    <div class="row">
+                        <div class="col" style="padding-left:0;">&nbsp;&nbsp;&nbsp;ITEMS </div>
+                        <div class="col text-right">{{itc}}</div>
+                    </div>
+                    <br>
+                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                        <div class="col">TOTAL PRICE</div>
+                        <div class="col text-right">&euro; {{to}}.00</div><br><br>
+                    </div>
+                    <button class="btn btn-warning">CHECKOUT</button>
+                </div>
+            </div>
+</div>
+</div>
+</body>
+</html>
